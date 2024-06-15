@@ -1,0 +1,12 @@
+# Debug Packages #
+*-debuginfo-*
+*-debug-*
+kernel-debug-*
+#
+# Language Packs #
+*-langpack-*
+#
+# LibreOffice Help #
+libreoffice-help-*
+#
+#
