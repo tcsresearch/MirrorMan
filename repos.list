@@ -1,5 +1,9 @@
+# This is the list of repos MirrorMan will use.
+# You can type 'dnf repolist' for a list of all repos on a Fedora system.
 Fedora
-gh-cli
-RPMFusion
-WebMin
-kernel-vanilla
+updates
+# Additonal repos not included in Fedora.
+gh-cli # GitHub CLI
+RPMFusion # RPM Fusion
+WebMin # WebMin
+kernel-vanilla # Vanilla Kernels from Fedora COPR
