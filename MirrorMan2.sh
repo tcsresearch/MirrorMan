@@ -1,12 +1,16 @@
-### TODO: Set config and functions folders in config.ini file.
+### Source config.ini ###
+# TODO: Add Sanity Check.
+echo "Sourcing config/config.ini..."
+source config/config.ini
+echo "Successfully sourced config.ini"
 
 ### Enable Cecho ###
 # TODO: Add Sanity Check.
-source functions/NewCecho.bfunc
+source $FunctionsDir/NewCecho.bfunc
 cecho yellow "Cecho Enabled."
 
 # TODO: Add Sanity Check.
-for repo in `cat config/repos.list`; do
+for repo in `cat $ConfigDir/repos.list`; do
 	cecho yellow "Updating repo $repo..."
 	cd $repo
 	sh Update.sh
