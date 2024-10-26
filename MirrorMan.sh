@@ -1,3 +1,14 @@
+### Source Config ###
+source config/config.ini
+
+### Source Functions ###
+for func in `cat $FunctionsDir/functions.list`; do
+		source $func
+	done
+
+
+
+### Main Program ###
 DisplayBanner
 SourceConfig
 EnableCecho
