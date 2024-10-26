@@ -1,7 +1,9 @@
 ### Source Config ###
+# TODO: Add Sanity Check.
 source config/config.ini
 
 ### Source Functions ###
+# TODO: Add Sanity Check.
 for func in `cat $FunctionsDir/functions.list`; do
 		source $func
 	done
@@ -13,6 +15,5 @@ DisplayBanner
 SourceConfig
 EnableCecho
 ShowConfig
-# This will pause until a button is pressed.
-read -p "Press enter to continue"
+Pause
 DoSync
