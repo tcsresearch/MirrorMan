@@ -1,4 +1,5 @@
 DisplayBanner
 SourceConfig
 EnableCecho
+ShowConfig
 DoSync
