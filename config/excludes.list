@@ -1,0 +1,59 @@
+# Debug Packages #
+*-debuginfo-*
+*-debug-*
+*-fastdebug-*
+*-slowdebug-*
+kernel-debug-*
+#
+# Headless
+*-headless-*
+#
+# Language Packs #
+*-langpack-*
+#
+# LibreOffice Help #
+libreoffice-help-*
+#
+#
+# Source Code #
+*-source-*
+*-src-*
+#
+#
+# Java #
+java-*
+# java-11-*
+# java-17-*
+# java-21-*
+# java-1.8.0-*
+# java-*-openjdk-*
+# *-javadoc-*
+# *-fastdebug-*
+# *-slowdebug-*
+#
+#
+# Other #
+rust-*
+boost-*
+calceph-*
+clang-*
+claws-*
+clang-*
+clamav-*
+ceph-*
+dolphin-*
+dotnet-*
+dmlite-*
+emacs-*
+glibc-langpack-*
+ghc-*
+golang-*
+java-*
+kernel-debug-*
+mesa-*
+mingw32-*
+mingw64-*
+R-*
+root-*
+wine-*
+xen-*
