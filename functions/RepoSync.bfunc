@@ -1,0 +1,48 @@
+## Define Variables ##
+prog="reposync"
+cmdlines=" -n -m --delete --download-metadata"
+Repo_ID="fedora" # Changfe this for different repos
+
+## Define Banner Function ##
+function DisplayBanner {
+	echo "RepoSynbc Updater v0.1"
+	echo "(c) TCS Research.  All Rights Reserved."
+}
+
+## Define DisplayConfig Function ##
+function DisplayConfig {
+	echo "Program:  $prog"
+	echo "CmdLines: $cmdlines"
+	echo "Repo ID:  $Repo_ID"
+}
+
+## Status Line ###
+StatusLineString='Status: '
+function StatusLine {
+	numlines=$(tput lines)
+numcols=$(tput cols)
+numcols=$(expr $numcols - 1)
+separator_line=$(for i in $(seq 0 $numcols);do printf "%s" "-";done;printf "\n")
+tput cup $numlines
+echo $separator_line
+echo "Status Line String: None"
+# echo "$StatusLineString"
+}
+
+## Call Functions ##
+# StatusLine()
+	DisplayBanner
+	DisplayConfig
+
+## Fedora ##
+# TODO: Insert $StatusLineString here w/ function call 
+$prog $cmdlines --repoid=fedora
+# $prog $cmdlines --repoid=rpmfusion-free-updates
+# reposync -n -m --delete --download-metadata --repoid=rpmfusion-free
+
+## Fedora Updates ##
+$prog $cmdlines --repoid=updates
+# $prog $cmdlines --repoid=rpmfusion-nonfree-updates
+
+# reposync -n -m --delete --download-metadata --repoid=rpmfusion-free-updates
+# reposync -n -m --delete --download-metadata --repoid=rpmfusion-nonfree-updates

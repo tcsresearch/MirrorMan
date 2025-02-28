@@ -1,0 +1,26 @@
+## TODO: Add Usage feature when $1 is empty.
+function UpdateRepo() {
+## Define Variables ##
+# prog="sudo reposync"
+prog="reposync"
+
+cmdlines=" -n -m --delete --download-metadata"
+
+# cmdlines=" -n -m --delete --download-metadata --norepopath" # Added --norepopath.
+
+## Usage ##
+ if [ -z "$1" ]; then
+         echo "Usage: $0 <reponame>"
+         echo "Where <reponame> is the name of the repo you wish to update."
+ fi
+
+
+## Display Current Folder ##
+cecho green "Current Folder Is:"
+pwd
+echo " "
+Pause
+
+## Main ##
+$prog $cmdlines --repoid=$1
+}

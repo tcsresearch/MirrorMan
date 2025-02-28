@@ -1,0 +1,64 @@
+## TODO: Add Usage feature when $1 is empty.
+
+## Define Variables ##
+prog="reposync"
+# prog="sudo reposync"
+
+cmdlines=" -n -m --delete --download-metadata"
+# cmdlines=" -n -m --delete --download-metadata --norepopath" # Added --norepopath
+
+# Do we need this?
+echo " "
+repoid="$1"
+
+## Usage ##
+if [ -z "$1" ]; then
+         echo "Usage: $0 <reponame>"
+         echo "Where <reponame> is the name of the repo you wish to update."
+ 	 echo " "
+	 fi
+
+## Enable Cecho ##
+function Enable_Cecho() {
+	# Define Location of Cecho
+	Location_Cecho="/etc/BLING/NewCecho.bfunc"
+
+	# Load function if it exists
+	if [ -f $Location_Cecho ]; then
+    		. $Location_Cecho
+    		cecho green "Cecho Enabled."
+	fi
+}
+
+## Show Variables ##
+function ShowVars(){
+	cecho blue "Program: ${prog}"
+	cecho blue "CmdLines: ${cmdlines}"
+	echo " "
+}
+
+
+
+## Update Repo ##
+function UpdateRepo() {
+	cecho blue "#####----- Updating Repo: $repoid: -----#####"
+	$prog $cmdlines --repoid=$1
+	cecho green "#####----- Repo $repoid Updated. -----#####"
+}
+
+
+## Display Current Folder ##
+function DisplayCurrentFolder(){
+	cecho green "Current Folder Is: ${repoid}"
+	echo " "
+	# TODO: Insert correct paise command here.
+}
+
+
+### Main Progream ###
+ Enable_Cecho
+ ShowVars
+ DisplayCurrentFolder
+ UpdateRepo
+
+
