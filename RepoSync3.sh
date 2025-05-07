@@ -38,7 +38,7 @@ function DisplayConfig {
 	echo " "
 }
 
-## Define StatusLineSting Function ###
+## Define StatusLineString Function ###
 StatusLineString='Status: '
 function StatusLine {
 	numlines=$(tput lines)
