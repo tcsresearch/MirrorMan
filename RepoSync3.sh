@@ -75,5 +75,7 @@ function DoRepoSync() {
 #	 StatusLine ()
 	DisplayBanner
 	DisplayConfig
+ # There should be a pause here from BLING's Pause.bfunc
+ # Pause Press Any Key To Continue or CTRL + C To Cancel.
  	DoRepoSync
 
