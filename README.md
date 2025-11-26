@@ -1,3 +1,5 @@
+<img src="https://github.com/tcsresearch/MirrorMan/blob/main/MirrorMan-Logo.png">
+
 # MirrorMan
 
 > [!NOTE]
