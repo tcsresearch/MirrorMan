@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 ## Define Variables ##
 # TODO: Use $1 for cmdline
 #
@@ -57,7 +59,7 @@ function StatusLine {
 function DoRepoSync() {
 	# We need to change folders into and out of the repo
 	echo "Entering Folder: $Repo_ID..."
-	cd $Repo_ID && pwd
+	cd "$Repo_ID" && pwd || return 1
 	# Begin reposync
 	 $prog $cmdlines --repoid=$Repo_ID
 	# $prog $cmdlines --repoid=rpmfusion-free-updates
@@ -65,7 +67,7 @@ function DoRepoSync() {
 	#
 	# Revert to previous folder after sync
 	echo "Exiting Folder: $Repo_ID..."
-	cd -
+	cd ... || return
 }
 
 
