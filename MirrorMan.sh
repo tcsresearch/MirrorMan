@@ -21,7 +21,7 @@ if [ ! -f "$FunctionsDir/$FunctionsFile" ]; then
 	echo "ERROR! List File $FunctionsDir/$FunctionsFile NOT Found...quitting."
 	return
 else
-	for func in "$(cat $FunctionsDir/$FunctionsFile)"; do
+	for func in $(cat $FunctionsDir/$FunctionsFile); do
 		source "$func"
 	done
 fi
