@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 ## Define Variables ##
 # TODO: Use $1 for cmdline
 #
@@ -64,7 +66,7 @@ Repo_ID="$1" # Change this for different repos
 function IsCechoEnabled() {
         if ! [ -x "$(command -v cecho)" ]; then
           echo 'Error: cecho is not installed.' >&2
-        exit 1
+        return 1
         fi
 }
 
@@ -103,12 +105,12 @@ function ListRepos() {
 ## Define StatusLineString Function ###
 StatusLineString='Status: '
 function StatusLine {
-        numlines=$(tput lines)
-        numcols=$(tput cols)
-        numcols=$(expr $numcols - 1)
-        separator_line=$(for i in $(seq 0 $numcols);do printf "%s" "-";done;printf "\n")
-        tput cup $numlines
-        echo $separator_line
+        numlines="$(tput lines)"
+        numcols="$(tput cols)"
+        numcols="$(expr $numcols - 1)"
+        separator_line="$(for i in $(seq 0 $numcols);do printf "%s" "-";done;printf "\n")"
+        tput cup "$numlines"
+        echo "$separator_line"
         echo "Status Line String: None"
         # echo "$StatusLineString"
 }
@@ -119,7 +121,7 @@ function StatusLine {
 function DoRepoSync() {
         # We need to change folders into and out of the repo
         echo "Entering Folder: $Repo_ID..."
-        cd $Repo_ID && pwd
+        cd $Repo_ID && pwd || return 1
         # Begin reposync
          $prog $cmdlines --repoid=$Repo_ID
         # $prog $cmdlines --repoid=rpmfusion-free-updates
@@ -127,7 +129,7 @@ function DoRepoSync() {
         #
         # Revert to previous folder after sync
         echo "Exiting Folder: $Repo_ID..."
-        cd -
+        cd ... || return
 }
 
 
