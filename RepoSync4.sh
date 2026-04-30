@@ -107,7 +107,8 @@ StatusLineString='Status: '
 function StatusLine {
         numlines="$(tput lines)"
         numcols="$(tput cols)"
-        numcols="$(expr $numcols - 1)"
+        # DEPRICATED: numcols="$(expr $numcols - 1)"
+	      numcols=$((numcols - 1)) # Modern Implementation (replaces 'expr')
         separator_line="$(for i in $(seq 0 $numcols);do printf "%s" "-";done;printf "\n")"
         tput cup "$numlines"
         echo "$separator_line"
