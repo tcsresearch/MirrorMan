@@ -1,6 +1,6 @@
-# On a bash script, I personally like to use the following script to set parameters:
+#!/usr/bin/env bash
 
-#!/bin/bash
+# On a bash script, I personally like to use the following script to set parameters:
 
 helpFunction()
 {
