@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 ##### Corrected by Google AI and confirmed working as of 04/02/2026 #####
 
 ## Define Variables ##
