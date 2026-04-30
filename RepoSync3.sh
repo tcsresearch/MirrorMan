@@ -43,12 +43,12 @@ function DisplayConfig {
 ## Define StatusLineString Function ###
 StatusLineString='Status: '
 function StatusLine {
-	numlines=$(tput lines)
-	numcols=$(tput cols)
-	numcols=$(expr $numcols - 1)
-	separator_line=$(for i in $(seq 0 $numcols);do printf "%s" "-";done;printf "\n")
-	tput cup $numlines
-	echo $separator_line
+	numlines="$(tput lines)"
+	numcols="$(tput cols)"
+	numcols="$(expr $numcols - 1)"
+	separator_line="$(for i in $(seq 0 $numcols);do printf "%s" "-";done;printf "\n")"
+	tput cup "$numlines"
+	echo "$separator_line"
 	echo "Status Line String: None"
 	# echo "$StatusLineString"
 }
