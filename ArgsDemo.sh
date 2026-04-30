@@ -1,6 +1,7 @@
+#!/usr/bin/env bash
+
 # For more complex scripts with named options (like -v for verbose or --help), the getopts command is commonly used.
 
-#!/bin/bash
 while getopts "vn:" flag; do
   case "${flag}" in
     v) verbose=true ;;
