@@ -62,7 +62,7 @@ function DoRepoSync() {
 	echo "Entering Folder: $Repo_ID..."
 	cd "$Repo_ID" && pwd || return 1
 	# Begin reposync
-	 $prog $cmdlines --repoid=$Repo_ID
+	 "$prog" "$cmdlines" --repoid="$Repo_ID"
 	# $prog $cmdlines --repoid=rpmfusion-free-updates
 	# reposync -n -m --delete --download-metadata --repoid=rpmfusion-free
 	#
