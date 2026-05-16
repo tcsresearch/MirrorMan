@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 for repo in `cat repos.list`; do
 	echo "Updating repo $repo..."
 	cd $repo
