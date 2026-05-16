@@ -1,3 +1,4 @@
+#!/usr/bin/env bash
 ## Define Variables ##
 
 prog="reposync"
