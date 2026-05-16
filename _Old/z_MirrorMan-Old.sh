@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 ### Enable Cecho ###
 # TODO: Add Sanity Check.
 source ./NewCecho.bfunc
