@@ -2,7 +2,7 @@
 
 ### Enable Cecho ###
 # TODO: Add Sanity Check.
-source "./NewCecho.bfunc"
+source "./Cecho.bfunc"
 cecho blue "Cecho Enabled."
 echo " "
 
