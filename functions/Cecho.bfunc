@@ -1,0 +1,59 @@
+#/bin/bash
+
+## This is the latest and greatest version of Cecho, as of December 2025. ##
+Cecho_Version="25.12"
+#
+cecho() {
+        local code="\033["
+        case "$1" in
+            # Colors
+				black     | bk) color="${code}0;30m";;
+                red       |  r) color="${code}1;31m";;
+                green     |  g) color="${code}1;32m";;
+                yellow    |  y) color="${code}1;33m";;
+                blue      |  b) color="${code}1;34m";;
+                purple    |  p) color="${code}1;35m";;
+                cyan      |  c) color="${code}1;36m";;
+                gray      | gr) color="${code}0;37m";;
+				grey      | gr) color="${code}0;37m";; # Alias to account for misspelling of 'gray'
+				none      | nc) color="${code}0m";;    # No color
+				nocolor   | nc) color="${code}0m";;    # Alias of No color.
+			# Help
+				--usage | --help) Usage ;;  
+		### Default case - nocolor.
+               *) local text="$1"
+             # *) Usage ;;
+
+	## This line is disabled and can be safely removed after further testing.
+	# local text="Usage: cecho <color> <text> - text must be inside double quotes."
+        esac
+        [ -z "$text" ] && local text="$color$2${code}0m"
+        echo -e "$text"
+}
+
+## This function has been merged into Usage() ##
+### Test Display - WORKS!! ###
+function Test_Cecho() {
+	cecho b "This is blue"
+	cecho r "This is red"
+	cecho yellow "This is yellow"
+}
+
+### Usage ###
+function Usage() {
+	echo "Cecho Version: $Cecho_Version."
+	echo "------------------------------------------------------------------------------"
+	echo " Usage: cecho <color> <text> - text MUST be inside double quotes to work."
+	echo "	Where <color> is one of black/red/green/yellow/blue/purple/cyan/gray"
+	echo "	and <text> is what you want to be echoed."
+	echo "------------------------------------------------------------------------------"
+	echo " "
+	echo "If the following lines have no color, then cecho is NOT loaded."
+	echo " "
+	cecho r "This is RED."  && echo "Result Of: cecho red \"This is RED.\" "
+	echo " "
+	cecho g "This is GREEN." && echo "Result Of: cecho green \"This is GREEN.\" "
+	echo " "
+	cecho b "This is BLUE." && echo "Result Of: cecho blue \"This is BLUE.\" "
+	echo " "
+}
