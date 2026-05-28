@@ -36,24 +36,24 @@ function RunDebug() {
 function SyncRepo_1() {
 	## cecho yellow " ---------- Updating Repo: $RepoID_1 ---------- "
 	echo " ---------- Updating Repo: $RepoID_1 ---------- "
-	"$prog" "$args" --repoid="$RepoID_1" --exclude='$excludes'
+	"$prog" "$args" --repoid=$RepoID_1 --exclude='$excludes'
 }
 
 function SyncRepo_2() {
 	## cecho yellow " ---------- Updating Repo: $RepoID_2 ---------- "
-	"$prog" "$args" --repoid="$RepoID_2" --exclude='$excludes'
+	"$prog" "$args" --repoid=$RepoID_2 --exclude='$excludes'
 	echo " ---------- Updating Repo: $RepoID_2 ---------- "
 }
 
 function SyncRepo_3() {
         ## cecho yellow " ---------- Updating Repo: $RepoID_1 ---------- "
         echo " ---------- Updating Repo: $RepoID_3 ---------- "
-        "$prog" "$args" --repoid="$RepoID_3" --exclude='$excludes'
+        "$prog" "$args" --repoid=$RepoID_3 --exclude='$excludes'
 }
 function SyncRepo_4() {
         ## cecho yellow " ---------- Updating Repo: $RepoID_1 ---------- "
         echo " ---------- Updating Repo: $RepoID_4 ---------- "
-        "$prog" "$args" --repoid="$RepoID_4" --exclude='$excludes'
+        "$prog" "$args" --repoid=$RepoID_4 --exclude='$excludes'
 }
 
 
