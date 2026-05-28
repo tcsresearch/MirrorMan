@@ -8,8 +8,8 @@ excludes="*-kmodsrc-*"
 # reposync -n -m --delete --repoid=kernel-vanilla:fedora
 # reposync -n -m --delete --repoid=kernel-vanilla:stable
 
-$prog $args --repoid=rpmfusion-free
-$prog $args --repoid=rpmfusion-free-updates
+"$prog" "$args" --repoid=rpmfusion-free
+"$prog" "$args" --repoid=rpmfusion-free-updates
 
-$prog $args --repoid=rpmfusion-nonfree
-$prog $args --repoid=rpmfusion-nonfree-updates
+"$prog" "$args" --repoid=rpmfusion-nonfree
+"$prog" "$args" --repoid=rpmfusion-nonfree-updates
