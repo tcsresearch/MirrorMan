@@ -90,46 +90,50 @@ function RunDebug() {
 # DoSync #
 ##########
 
+# TODO: Create superceding function SyncRepo() that allows a $1 to the function.
+#		It will use the $1 in cecho command and $prog $args command also.
+#		Need to use -z test to prevent blank $1 or -eq 0
+		
 function SyncRepo_1() {
 	cecho yellow " ---------- Updating Repo: $RepoID_1 ---------- "
 	# echo " ---------- Updating Repo: $RepoID_1 ---------- "
 	echo " "
-	$prog $args --repoid=$RepoID_1 --exclude='$excludes'
+	"$prog" "$args" --repoid=$RepoID_1 --exclude='$excludes'
 }
 
 function SyncRepo_2() {
 	cecho yellow " ---------- Updating Repo: $RepoID_2 ---------- "
 	# echo " ---------- Updating Repo: $RepoID_2 ---------- "
 	echo " "
-	$prog $args --repoid=$RepoID_2 --exclude='$excludes'
+	"$prog" "$args" --repoid=$RepoID_2 --exclude='$excludes'
 }
 
 function SyncRepo_3() {
         cecho yellow " ---------- Updating Repo: $RepoID_3 ---------- "
         # echo " ---------- Updating Repo: $RepoID_3 ---------- "
         echo " "
-        $prog $args --repoid=$RepoID_3 --exclude='$excludes'
+        "$prog" "$args" --repoid=$RepoID_3 --exclude='$excludes'
 }
 
 function SyncRepo_4() {
         cecho yellow " ---------- Updating Repo: $RepoID_4 ---------- "
         # echo " ---------- Updating Repo: $RepoID_4 ---------- "
         echo " "
-        $prog $args --repoid=$RepoID_4 --exclude='$excludes'
+        "$prog" "$args" --repoid=$RepoID_4 --exclude='$excludes'
 }
 
 function SyncRepo_5() {
         cecho yellow " ---------- Updating Repo: $RepoID_5 ---------- "
         # echo " ---------- Updating Repo: $RepoID_5 ---------- "
         echo " "
-        $prog $args --repoid=$RepoID_5 --exclude='$excludes'
+        "$prog" "$args" --repoid=$RepoID_5 --exclude='$excludes'
 }
 
 function SyncRepo_6() {
         cecho yellow " ---------- Updating Repo: $RepoID_6 ---------- "
         # echo " ---------- Updating Repo: $RepoID_6 ---------- "
         echo " "
-        $prog $args --repoid=$RepoID_6 --exclude='$excludes'
+        "$prog" "$args" --repoid=$RepoID_6 --exclude='$excludes'
 }
 
 
