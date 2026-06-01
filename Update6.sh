@@ -2,6 +2,9 @@
 # ShellCheck: Disable SC1090
 # shellcheck source=/dev/null
 
+# ShellCheck: Disable SC2016
+# shellcheck disable=SC2016
+
 #####################################################################################
 # Define Reposync Variables #							    
 #############################
