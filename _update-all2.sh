@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 
+# ShellCheck: Disable SC2013
+# shellcheck disable=SC2013
+
 ### Enable Cecho ###
 # TODO: Add Sanity Check.
 source "./Cecho.bfunc"
