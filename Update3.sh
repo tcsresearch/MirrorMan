@@ -1,4 +1,7 @@
 #!/usr/bin/env bash
+# ShellCheck: Disable SC1090
+# shellcheck source=/dev/null
+
 
 ##### Corrected by Google AI and confirmed working as of 04/02/2026 #####
 
