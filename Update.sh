@@ -1,4 +1,6 @@
 #!/usr/bin/env bash
+# shellcheck disable=SC2034  # Unused variables left for readability
+
 ## Define Variables ##
 
 prog="reposync"
