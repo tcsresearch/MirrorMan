@@ -1,4 +1,6 @@
 #!/usr/bin/env bash
+# ShellCheck: Disable SC1090
+# shellcheck source=/dev/null
 
 ### Define Config Dirs & Files ###
 ConfigDir="config"
