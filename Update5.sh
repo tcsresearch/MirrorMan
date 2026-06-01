@@ -1,4 +1,7 @@
 #!/usr/bin/env bash
+# ShellCheck: Disable SC1090
+# shellcheck source=/dev/null
+
 ## Define Variables ##
 
 prog="reposync"
