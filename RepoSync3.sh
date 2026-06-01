@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+# shellcheck disable=SC2034  # Unused variables left for readability
 
 ## Define Variables ##
 # TODO: Use $1 for cmdline
