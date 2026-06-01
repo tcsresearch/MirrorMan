@@ -2,6 +2,9 @@
 # ShellCheck: Disable SC1090
 # shellcheck source=/dev/null
 
+# ShellCheck: Disable SC2013
+# shellcheck disable=SC2013
+
 ### Define Config Dirs & Files ###
 ConfigDir="config"
 ConfigFile="config.ini"
