@@ -38,12 +38,12 @@ fi
 
 # FIXME: We will need to if/else these two.
 
-if [ "delete" = "true" ]; then
+if [ "$delete" = "true" ]; then
         Deletion_Enabled=" -d"
         echo "Deletion Enabled.  Obsolete packages will be removed."
         fi
 
-if [ "metadata" = "true" ]; then
+if [ "$metadata" = "true" ]; then
         MetaData_Enabled=" -m"
         echo "Metadata Downloads Enabled.  Metadata will be saved."
 fi
