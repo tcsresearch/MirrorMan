@@ -1,0 +1,1 @@
+xargs rm < ExcludedFiles.list
