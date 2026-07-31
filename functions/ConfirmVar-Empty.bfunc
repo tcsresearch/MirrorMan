@@ -1,0 +1,41 @@
+# CheckFunction.bfunc -  Checks if a variable is not empty before continuing.
+
+ConfirmVar_Empty() { 
+    local MY_VAR="$1"
+
+    # Check if the variable is empty
+    if [[ ! -z "$MY_VAR" ]]; then
+        echo "Error: Variable is NOT empty. Stopping function." >&2
+        return 1  # Use 'exit 1' instead if you want to stop the whole script
+    fi
+
+    echo "Variable is empty: $MY_VAR"
+    # Your main function logic continues here
+}
+
+# Testing the function
+## check_variable "Hello"  # Continues
+## check_variable ""       # Stops
+
+
+## TODO: Fix code to confirm Variable is empty rather than full.
+ConfirmVar_Empty_Fast() {
+    # If -n (not empty) fails, print error and return 1
+    [[ -n "$1" ]] || { echo "Error: Missing value." >&2; return 1; }
+
+    echo "Continuing with: $1"
+}
+
+
+
+## TODO: Fix code to confirm Variable is empty rather than full.
+
+ConfirmVar_Empty_Native() {
+    local MY_VAR="$1"
+    
+    # If MY_VAR is empty, Bash prints the error and halts execution
+    : "${MY_VAR:?Error: Variable cannot be empty.}"
+    
+    echo "Continuing with: $MY_VAR"
+}
+

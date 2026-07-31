@@ -1,0 +1,142 @@
+# TODO: - Enable Cecho.
+#       - Implement code to use excludes. 
+
+### FIXME: Running 'source Update3.sh' works fine, but running 'sh Update3.sh' has Cecho fail with an error (not found).
+#		We need to further separate the functions vs script
+
+
+
+########## Define Variables ##########
+
+prog="reposync"
+args=" -n -m --delete"
+
+
+########## Excludes Configuration ##########
+# TODO: Remove the following $excludes variable after further testing
+# excludes="*-debug*,*-rt-*"
+
+ExcludesFile="./excludes-filtered2.list"
+CommaExcludesFile="./excludes-filtered2-commas.list"
+
+
+#  excludes=$FedoraExcludesList_Filtered2
+  excludes=$FedoraExcludesList_Filtered2-Commas
+
+FedoraExcludesList_Filtered=$(<excludes-filtered.list)
+
+# Workable Excludes File
+FedoraExcludesList_Filtered2=$(<excludes-filtered2.list)
+
+# Workable Excludes File - With Commas
+# FedoraExcludesList_Filtered2-Commas=$(<excludes-filtered2-commas.list)
+
+
+
+########## Repo Configuration ##########
+
+RepoID_1="fedora"
+RepoID_2="updates"
+
+######################################################################################
+
+# reposync -n -m --delete --repoid=kernel-vanilla:fedora
+# reposync -n -m --delete --repoid=kernel-vanilla:stable
+
+# $prog $args --repoid=kernel-vanilla:fedora --exclude=*-debug*,*-rt-* 
+# $prog $args --repoid=kernel-vanilla:stable --exclude=*-debug*,*-rt-*
+
+######################################################################################
+
+##### Add Commas To Excludes File #####
+function AddCommasToExcludesFile() {
+	sed -z 's/\n/,/g; s/,$//' $ExcludesFile > $CommaExcludesFile
+}
+
+
+##### Usage #####`
+
+function Usage() {
+	echo "Update2.sh Functions: "
+	echo " - ShowVars: Display Variables "
+	echo " - RunDebug: Show commands to run. "
+	echo " - ShowExcludes: Show all excluded packages. "
+	echo " ----------------------------------------------"
+	echo " - DoSync: Sync Both Repos."
+	echo " - SyncRepo_1: Sync Fedora Repo. "
+	echo " - SyncRepo_2: Sync Updates Repo. "
+	echo " "
+}
+
+##### ShowVars #####
+
+function ShowVars() {
+	echo " "
+	echo "---------- Configuration Variables ----------"
+	echo "  Prog: $prog "
+	echo "  Args: $args "
+	echo " "
+	echo "  Excludes File: $ExcludesFile"
+	echo "  Comma Excludes File: $CommaExcludesFile"
+	echo " "
+	echo "---------- Repo Configuration ----------"
+	echo " "
+	echo "  RepoID_1: $RepoID_1 "
+	echo "  RepoID_2: $RepoID_2 " 
+	echo " "
+
+}
+
+##### Debug #####
+
+function RunDebug() {
+	echo "Run Command: $prog $args --repoid=$RepoID_1 --exclude='$excludes' "
+	echo " "
+	echo "Run Command: $prog $args --repoid=$RepoID_2 --exclude='$excludes' " 
+}
+
+##### ShowExcludes ###
+
+function ShowExcludes() {
+	echo " Displaying Excludes..."
+	echo " "
+	echo "$excludes" | more
+}
+
+
+### Pause ###
+# Pause
+
+function DoSync() {  
+	SyncRepo_1
+	SyncRepo_2
+}
+
+function SyncRepo_1() {
+	echo " "
+	cecho yellow " ---------- Updating Repo: $RepoID_1 ---------- "
+	## echo " ---------- Updating Repo: $RepoID_1 ---------- "
+	$prog $args --repoid=$RepoID_1 --exclude='$excludes'
+	echo " "
+}
+
+
+function SyncRepo_2() {
+	echo " "
+	cecho yellow " ---------- Updating Repo: $RepoID_2 ---------- "
+	## echo " ---------- Update Repo: $RepoID_2 ---------- "
+	$prog $args --repoid=$RepoID_2 --exclude='$excludes'
+	echo " "
+}
+
+
+#########################################################################################
+
+# Main Program #
+
+# RunDebug
+
+# Usage
+# SyncRepo_1
+# SyncRepo_2
+

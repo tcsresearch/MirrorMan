@@ -1,26 +1,215 @@
-## TODO: Add Usage feature when $1 is empty.
-function UpdateRepo() {
-## Define Variables ##
-# prog="sudo reposync"
-prog="reposync"
+#!/bin/env bash
+#
+# shellcheck disable=SC2034,SC2154
+#
+# TODO: - Enable Cecho.
+#       - Implement code to use excludes. 
 
-cmdlines=" -n -m --delete --download-metadata"
-
-# cmdlines=" -n -m --delete --download-metadata --norepopath" # Added --norepopath.
-
-## Usage ##
- if [ -z "$1" ]; then
-         echo "Usage: $0 <reponame>"
-         echo "Where <reponame> is the name of the repo you wish to update."
- fi
+### FIXME: Running 'source Update3.sh' works fine, but running 'sh Update3.sh' has Cecho fail with an error (not found).
+#		We need to further separate the functions vs script
 
 
-## Display Current Folder ##
-cecho green "Current Folder Is:"
-pwd
-echo " "
-Pause
+function PopulateExcludesFromFile(){
+# This function reads the configured file, and populates the contents of the excludes variables with them.
 
-## Main ##
-$prog $cmdlines --repoid=$1
+# ExcludesFolder="~/dnf5-repos/Fedora/excludes"
+
+# excludes=$FedoraExcludesList_Filtered2
+  Excludes="$ExcludesFolder/$FedoraExcludesList_Filtered2_Commas"
+
+  FedoraExcludesList_Filtered="$(<$ExcludesFolder/excludes-filtered.list)"
+
+# Workable Excludes File
+  FedoraExcludesList_Filtered2="$(<$ExcludesFolder/excludes-filtered2.list)"
+
+# Workable Excludes File - With Commas
+  FedoraExcludesList_Filtered2_Commas="$(<$ExcludesFolder/excludes-filtered2-commas.list)"
 }
+
+
+########## Repo Configuration ##########
+
+RepoID_1="fedora"
+RepoID_2="updates"
+
+######################################################################################
+
+# reposync -n -m --delete --repoid=kernel-vanilla:fedora
+# reposync -n -m --delete --repoid=kernel-vanilla:stable
+
+# $prog $args --repoid=kernel-vanilla:fedora --exclude=*-debug*,*-rt-* 
+# $prog $args --repoid=kernel-vanilla:stable --exclude=*-debug*,*-rt-*
+
+######################################################################################
+
+##### Add Commas To Excludes File #####
+function AddCommasToExcludesFile() {
+	sed -z 's/\n/,/g; s/,$//' "$ExcludesFile" > "$CommaExcludesFile"
+}
+
+
+##### Usage #####`
+
+function Usage() {
+	echo "Update2.sh Functions: "
+	echo " ----------------------------------------------"
+	echo " Display Options "
+	echo " ----------------------------------------------"
+	echo " - ShowVars: Display Variables "
+	echo " - ShowDebug: Show commands to run. "
+	echo " ----------------------------------------------"
+	echo " Excludes Options "
+	echo " ----------------------------------------------"
+	echo " - ShowExcludes: Show all excluded packages. "
+	echo " - ClearExcludes: Clears contents of excludes variables. "
+	echo " ----------------------------------------------"
+	echo " Sync Options "
+	echo " ----------------------------------------------"
+	echo " - DoSync: Sync Both Repos."
+	echo " - SyncRepo_1: Sync Fedora Repo. "
+	echo " - SyncRepo_2: Sync Updates Repo. "
+	echo " ----------------------------------------------"
+	echo " "
+}
+
+##### ShowVars #####
+
+function ShowVars() {
+	echo " "
+	echo "---------- Configuration Variables ----------"
+	echo "  Prog: $prog "
+	echo "  Args: $args "
+	echo " "
+	echo "  Excludes File: $ExcludesFile"
+	echo "  Comma Excludes File: $CommaExcludesFile"
+	echo " "
+	echo "---------- Repo Configuration ----------"
+	echo " "
+	echo "  RepoID_1: $RepoID_1 "
+	echo "  RepoID_2: $RepoID_2 " 
+	echo " "
+
+}
+
+##### Debug #####
+
+function ShowDebug-WithExcludes() {
+	echo "Run Command: $prog $args --repoid=$RepoID_1 --exclude='$excludes' "
+	echo " "
+	echo "Run Command: $prog $args --repoid=$RepoID_2 --exclude='$excludes' " 
+}
+
+function ShowDebug-NoExcludes() {
+        echo "Run Command: $prog $args --repoid=$RepoID_1 "
+        echo " "
+        echo "Run Command: $prog $args --repoid=$RepoID_2 "
+}
+
+
+function ShowDebug() {
+	ShowDebug-NoExcludes
+}
+
+##### Excludes ###
+
+function ShowExcludes() {
+	echo " Displaying Excludes..."
+	echo " "
+	echo "$excludes" | more
+}
+
+function Perform_ClearExcludes() {
+	echo "Clearing Excludes Variables..."
+	$Excludes=""
+	$FedoraExcludes_Filtered=""
+	$FedoraExcludes_Filtered2=""
+	$FedoraExcludes_Filtered2_Commas= ""
+	# echo "All Excludes Variables Cleared Successfully."
+	# echo " "
+}
+
+function Confirm_ClearExcludes() {
+        echo "Checking Excludes Variables..."
+        ConfirmVar_Empty $Excludes
+        ConfirmVar_Empty $FedoraExcludes_Filtered
+        ConfirmVar_Empty $FedoraExcludes_Filtered2
+        ConfirmVar_Empty $FedoraExcludes_Filtered2_Commas
+        echo "All Excludes Variables Cleared Successfully."
+        echo " "
+}
+
+
+function ClearExcludes() { # Alias that runs Perform_ClearExcludes() and Confirm_ClearExcludes().
+	Perform_ClearExcludes
+	Confirm_ClearExcludes
+}
+
+
+
+
+### Pause ###
+# Pause
+
+function DoSync() {  
+	# SyncRepo_1-NoExcludes
+	# SyncRepo_2-NoExcludes
+	DoSync-NoExcludes
+}
+
+
+function SyncRepo_1-NoExcludes() {
+	echo " "
+	cecho yellow " ---------- Updating Repo: $RepoID_1 ---------- "
+	## echo " ---------- Updating Repo: $RepoID_1 ---------- "
+	"$prog" "$args" --repoid=$RepoID_1 
+	echo " "
+}
+
+
+function SyncRepo_2-NoExcludes() {
+	echo " "
+	cecho yellow " ---------- Updating Repo: $RepoID_2 ---------- "
+	## echo " ---------- Update Repo: $RepoID_2 ---------- "
+	"$prog" "$args" --repoid=$RepoID_2 
+	echo " "
+}
+
+function SyncRepo_1-WithExcludes() {
+        echo " "
+        cecho yellow " ---------- Updating Repo: $RepoID_1 ---------- "
+        ## echo " ---------- Updating Repo: $RepoID_1 ---------- "
+        "$prog" "$args" --repoid=$RepoID_1 --exclude='$Excludes'
+        echo " "
+}
+
+
+function SyncRepo_2-WithExcludes() {
+        echo " "
+        cecho yellow " ---------- Updating Repo: $RepoID_2 ---------- "
+        ## echo " ---------- Update Repo: $RepoID_2 ---------- "
+        "$prog" "$args" --repoid=$RepoID_2 --exclude='$Excludes'
+        echo " "
+}
+
+
+function DoSync-NoExcludes() {
+	SyncRepo_1-NoExcludes
+	SyncRepo_2-NoExcludes
+}
+
+function DoSync-WithExcludes() {
+        SyncRepo_1-WithExcludes
+        SyncRepo_2-WithExcludes
+}
+
+
+#########################################################################################
+
+# Main Program #
+
+# RunDebug
+
+# Usage
+# SyncRepo_1
+# SyncRepo_2
+

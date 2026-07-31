@@ -2,8 +2,6 @@
 ## Cecho (Formerly NewCecho) with added colors and misc. fixes.
 # Last Updated: Jan 30, 2026
 
-Cecho_Version="26.01"
-
 # TODO: Determine regular vs bold, e.g: 0;31 vs 1;31
 #	Add Underline/Background/High_Intensity/Bold_High_Intensity/High_Intensity_Backgrounds
 # 	Portions Taken From: https://gkarthiks.github.io/quick-commands-cheat-sheet/bash_command.html
