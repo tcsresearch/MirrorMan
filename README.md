@@ -2,6 +2,14 @@
 
 # MirrorMan
 
+<hr>
+<h3>Project Status</h3>
+<p>
+  <!-- SHELLCHECK_COMPLIANCE_START --> <strong>Shellcheck Date Of Compliance:</strong> Pending Execution <!-- SHELLCHECK_COMPLIANCE_END -->
+</p>
+
+<hr>
+
 > [!NOTE]
 > A configurable utility to colorize reposync on Fedora.
 <hr>
